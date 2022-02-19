@@ -9,7 +9,7 @@ const FILES_TO_CACHE = [
   "/js/index.js",
   "/js/idb.js",
   "/manifest.json",
-  "/icons/icon-192.png",
+  // "/icons/icon-192.png",
   "icons/icon-144.png",
   "/icons/icon-512.png"
 ]
