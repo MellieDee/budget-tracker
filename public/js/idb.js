@@ -30,7 +30,7 @@ request.onsuccess = function (event) {
 
   if (navigator.online) {
     //upload local Budget data to API
-    saveRecord()
+    uploadBudget()
   }
 };
 
@@ -45,3 +45,43 @@ function saveRecord(record) {
   budgetObjectStore.add(record);
 }
 
+function uploadBudget() {
+  // open a transaction on pending db
+  const transaction = db.transaction(['updated_budget'], 'readwrite');
+
+  // access the pending store
+  const budgetObjectStore = transaction.objectStore('updated_budget');
+
+  //get all the records from the store
+  const getAll = budgetObjectStore.getAll();
+
+  getAll.onsuccess = function () {
+    // if data in store then send to API server
+    if (getAll.result.length > 0) {
+      fetch('/api/transaction', {
+        method: 'POST',
+        body: JSON.stringify(getAll.result),
+        headers: {
+          Accept: 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(res = res.json())
+        .then(serverResponse => {
+          if (serverResponse.message) {
+            throw new Error(serverResponse);
+          }
+
+          const transaction = db.transaction(['updated_budget'],
+            'readwrite');
+          const budgetObjectStore = transaction.objectStore('updated_budget');
+
+          // clear items in store
+          budgetObjectStore.clear();
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  };
+}
