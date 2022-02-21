@@ -34,7 +34,8 @@ Example of refactoring code to create a PWA, this budget tracker offers users a 
 
 - Simply navigate to the site and enter the description and amount of the transaction then submit it.
 - A chart populates to help visualize spending.
-- In address bars of supported browsers, click the icon [exact icon depends on your system](./public/icons/icon-pwa.png) to add the app to a desktop or home screen, then access it from there, like a native app.
+- In address bars of supported browsers, click the icon <img src="/public/icons/icon-pwa2.png" width="25" height="25" alt="icon for installing app"> to add the app to a desktop or home screen (exact icon depends on your system.)
+- Open and run like a native app.
 
 &nbsp;
 
@@ -50,7 +51,7 @@ Start tracking your money [here](https://mdd-budget-tracker.herokuapp.com/)
 
 ---
 
-<img src="/utils/assets/images/ScreenShot1.png" width=" 375" height="300" alt="Get all users route in Insomnia.">
+<img src="/public/assets/images/ScreenShot1.png" width=" 375" height="300" alt="Get all users route in Insomnia.">
 
 &nbsp;
 
